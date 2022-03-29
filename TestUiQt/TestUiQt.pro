@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    testbutton.cpp
+    testbutton.cpp \
+    testlabel.cpp
 
 HEADERS += \
         mainwindow.h \
-    testbutton.h
+    testbutton.h \
+    testlabel.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

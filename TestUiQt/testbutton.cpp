@@ -43,9 +43,9 @@ TestButton::TestButton(QWidget *parent)
     whiteBtnLayout->addSpacing(20);
     whiteBtnLayout->addWidget(m_WhiteFont18Btn);
 
-    m_BlueBtn = new QPushButton(tr("Blue\n Button"), this);
+    m_BlueBtn = new QPushButton(tr("Blue Button"), this);
     m_BlueBtn->setObjectName("BlueBtn");
-    m_BlueBtn->setFixedSize(100, 70);
+    m_BlueBtn->setFixedSize(100, 30);
 
     m_BlueCtlBtn = new QPushButton(tr("Disable"), this);
     m_BlueCtlBtn->setCheckable(true);
