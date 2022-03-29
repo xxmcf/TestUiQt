@@ -1,0 +1,66 @@
+
+QPushButton#WhiteBtn{
+    background-color: #dddddd;
+    color: #f0f0f0;
+    border-radius: 4px;
+    font-size: 16px
+}
+
+QPushButton#WhiteBtn[FontSize="18"]{
+    font-size: 18px
+}
+
+QPushButton#WhiteBtn[FontSize="14"]{
+    font-size: 14px
+}
+
+QPushButton#WhiteBtn[FontSize="12"]{
+    font-size: 12px
+}
+
+QPushButton#WhiteBtn:hover{
+    color: white;
+}
+
+QPushButton#WhiteBtn:pressed{
+    color: white;
+}
+
+QPushButton#WhiteBtn:disabled{
+    color: darkgray;
+}
+
+QPushButton#BlueBtn{
+    background-color: #3A5FFF;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-style: italic;  
+    font-weight: 900;
+    line-height: 20px;  
+
+}
+
+QPushButton#BlueBtn[FontSize="18"]{
+    font-size: 18px
+}
+
+QPushButton#BlueBtn[FontSize="14"]{
+    font-size: 14px
+}
+
+QPushButton#BlueBtn[FontSize="12"]{
+    font-size: 12px
+}
+
+QPushButton#BlueBtn:hover{
+    background-color: #5776FF;
+}
+
+QPushButton#BlueBtn:pressed{
+    background-color: #3D65DB;
+}
+
+QPushButton#BlueBtn:disabled{
+    background-color: rgba(58, 95, 255, 0.50);
+}
