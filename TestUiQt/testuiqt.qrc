@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/label">
+        <file alias="ppt20x20">res/label/ppt.png</file>
+        <file alias="ppt40x40">res/label/ppt@2x.png</file>
+        <file alias="success">res/label/success.png</file>
+        <file alias="avatar">res/label/avator.jpg</file>
+    </qresource>
+</RCC>

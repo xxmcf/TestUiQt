@@ -53,17 +53,20 @@ OBJECTS_DIR   = ./
 SOURCES       = ../TestUiQt/main.cpp \
 		../TestUiQt/mainwindow.cpp \
 		../TestUiQt/testbutton.cpp \
-		../TestUiQt/testlabel.cpp moc_mainwindow.cpp \
+		../TestUiQt/testlabel.cpp qrc_testuiqt.cpp \
+		moc_mainwindow.cpp \
 		moc_testbutton.cpp \
 		moc_testlabel.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		testbutton.o \
 		testlabel.o \
+		qrc_testuiqt.o \
 		moc_mainwindow.o \
 		moc_testbutton.o \
 		moc_testlabel.o
-DIST          = ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/spec_pre.prf \
+DIST          = ../TestUiQt/main.qss \
+		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/device_config.prf \
 		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/common/unix.conf \
@@ -457,6 +460,7 @@ Makefile: ../TestUiQt/TestUiQt.pro ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/ma
 		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/lex.prf \
 		../TestUiQt/TestUiQt.pro \
+		../TestUiQt/testuiqt.qrc \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtGui.framework/QtGui.prl \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/QtCore.prl
@@ -647,6 +651,7 @@ Makefile: ../TestUiQt/TestUiQt.pro ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/ma
 ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/yacc.prf:
 ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/lex.prf:
 ../TestUiQt/TestUiQt.pro:
+../TestUiQt/testuiqt.qrc:
 ../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 ../../../../Qt5.9.7/5.9.7/clang_64/lib/QtGui.framework/QtGui.prl:
 ../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/QtCore.prl:
@@ -679,6 +684,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../TestUiQt/testuiqt.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.9.7/5.9.7/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../TestUiQt/mainwindow.h ../TestUiQt/testbutton.h ../TestUiQt/testlabel.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../TestUiQt/main.cpp ../TestUiQt/mainwindow.cpp ../TestUiQt/testbutton.cpp ../TestUiQt/testlabel.cpp $(DISTDIR)/
@@ -705,8 +711,17 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_testuiqt.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_testuiqt.cpp
+qrc_testuiqt.cpp: ../TestUiQt/testuiqt.qrc \
+		../../../../Qt5.9.7/5.9.7/clang_64/bin/rcc \
+		../TestUiQt/res/label/success.png \
+		../TestUiQt/res/label/ppt.png \
+		../TestUiQt/res/label/ppt@2x.png \
+		../TestUiQt/res/label/avator.jpg
+	/Users/xiao2macf/Qt5.9.7/5.9.7/clang_64/bin/rcc -name testuiqt ../TestUiQt/testuiqt.qrc -o qrc_testuiqt.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -749,7 +764,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -766,9 +781,22 @@ mainwindow.o: ../TestUiQt/mainwindow.cpp ../TestUiQt/mainwindow.h \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../TestUiQt/testbutton.h \
+		../TestUiQt/testlabel.h \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QTabBar \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QProxyStyle \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qproxystyle.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtGui.framework/Headers/QPainter \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../TestUiQt/mainwindow.cpp
 
 testbutton.o: ../TestUiQt/testbutton.cpp ../TestUiQt/testbutton.h \
@@ -800,8 +828,13 @@ testlabel.o: ../TestUiQt/testlabel.cpp ../TestUiQt/testlabel.h \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/Headers/QVariant \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtCore.framework/Headers/qvariant.h \
 		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QStyle \
-		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qstyle.h
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Qt5.9.7/5.9.7/clang_64/lib/QtWidgets.framework/Headers/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o testlabel.o ../TestUiQt/testlabel.cpp
+
+qrc_testuiqt.o: qrc_testuiqt.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_testuiqt.o qrc_testuiqt.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

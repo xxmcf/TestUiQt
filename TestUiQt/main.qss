@@ -1,4 +1,27 @@
 
+
+QLabel#TitleLabel{
+    font-size: 18px;
+    font-weight: 900;
+    background-color:transparent;
+    border: 1px solid red;
+    padding:0px;
+    margin:0px;
+}
+
+QLabel[text-decoration="underline"]{
+    text-decoration: underline;
+}
+
+QLabel[text-decoration="line-through"]{
+    text-decoration: line-through;
+}
+
+QLabel[font-style="italic"]{
+    font-style: italic;
+}
+
+
 QPushButton#WhiteBtn{
     background-color: #dddddd;
     color: #f0f0f0;
@@ -31,13 +54,14 @@ QPushButton#WhiteBtn:disabled{
 }
 
 QPushButton#BlueBtn{
-    background-color: #3A5FFF;
+    /*background-color: #3A5FFF;*/
     color: white;
     border-radius: 4px;
     font-size: 16px;
     font-style: italic;  
     font-weight: 900;
-    line-height: 20px;  
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+    stop: 0 #3773FF, stop: 1 #509AFF);
 
 }
 
@@ -64,3 +88,34 @@ QPushButton#BlueBtn:pressed{
 QPushButton#BlueBtn:disabled{
     background-color: rgba(58, 95, 255, 0.50);
 }
+
+QLabel#BorderLabel
+{
+    border-image: url(:/label/ppt20x20);
+}
+
+QLabel#BorderLabel[ImageSize="20x20"]
+{
+    border-image: url(:/label/ppt20x20);
+}
+
+QLabel#BorderLabel[ImageSize="40x40"]
+{
+    border-image: url(:/label/ppt40x40);
+}
+
+QLabel#AvatarLabel
+{
+    border-radius: 6px;
+    border-image: url(:/label/avatar);
+}
+
+QLabel#AvatarBorderLabel
+{
+    border: 2px solid white;
+    border-radius: 6px;
+    background:transparent;
+}
+
+
+
